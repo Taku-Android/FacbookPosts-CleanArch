@@ -5,7 +5,7 @@ abstract class PostRemoteDataSource{
 
 
   Future<List<PostModel>> getAllPosts();
-  Future<Unit> addPost();
+  Future<Unit> addPost(PostModel postModel);
   Future<Unit> updatePost(PostModel postModel);
   Future<Unit> deletePost(int id);
 
@@ -22,7 +22,7 @@ class PostRemoteDataSourceImpl extends PostRemoteDataSource{
 
 
   @override
-  Future<Unit> addPost() {
+  Future<Unit> addPost(PostModel postModel) {
     // TODO: implement addPost
     throw UnimplementedError();
   }
