@@ -72,3 +72,12 @@ class CashError extends Failure{
   List<Object?> get props => [];
 
 }
+
+class OfflineError extends Failure{
+
+  OfflineError(super.errMessage);
+
+  @override
+  List<Object?> get props => [];
+
+}
