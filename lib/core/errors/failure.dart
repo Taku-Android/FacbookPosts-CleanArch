@@ -60,3 +60,8 @@ class ServerError extends Failure {
 
 }
 
+class CashError extends Failure{
+
+  CashError(super.errMessage);
+
+}
