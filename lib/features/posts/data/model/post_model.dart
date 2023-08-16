@@ -1,24 +1,17 @@
-class PostModel {
-  PostModel({
-      this.id, 
-      this.title, 
-      this.body,});
+import 'package:my_posts_clean_arch/features/posts/domain/entity/post.dart';
 
-  PostModel.fromJson(dynamic json) {
-    id = json['id'];
-    title = json['title'];
-    body = json['body'];
+class PostModel extends Post {
+  const PostModel({
+    int? id,
+    required String title,
+    required String body,
+  }) : super(id: id, title: title, body: body);
+
+  factory PostModel.fromJson(Map<String, dynamic> json) {
+    return PostModel(id: json['id'], title: json['title'], body: json['body']);
   }
-  int? id;
-  String? title;
-  String? body;
 
   Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['id'] = id;
-    map['title'] = title;
-    map['body'] = body;
-    return map;
+    return {'id': id, 'title': title, 'body': body};
   }
-
 }
