@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:equatable/equatable.dart';
 
-abstract class Failure{
+abstract class Failure extends Equatable{
 
   final String errMessage ;
 
@@ -58,10 +59,16 @@ class ServerError extends Failure {
 
     }
 
+  @override
+  List<Object?> get props => [];
+
 }
 
 class CashError extends Failure{
 
   CashError(super.errMessage);
+
+  @override
+  List<Object?> get props => [];
 
 }
