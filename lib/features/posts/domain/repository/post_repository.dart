@@ -5,8 +5,8 @@ import 'package:dartz/dartz.dart';
 abstract class PostRepo{
 
   Future<Either<Failure , List<Post>>> getAllPosts();
-  Future<Either<Failure , bool>> updatePost(Post post);
-  Future<Either<Failure , bool>> deletePost(int id);
-  Future<Either<Failure , bool>> addPost(Post post);
+  Future<Either<Failure , Unit>> updatePost(Post post);
+  Future<Either<Failure , Unit>> deletePost(int id);
+  Future<Either<Failure , Unit>> addPost(Post post);
 
 }
