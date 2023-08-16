@@ -1,0 +1,24 @@
+class PostModel {
+  PostModel({
+      this.id, 
+      this.title, 
+      this.body,});
+
+  PostModel.fromJson(dynamic json) {
+    id = json['id'];
+    title = json['title'];
+    body = json['body'];
+  }
+  int? id;
+  String? title;
+  String? body;
+
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['id'] = id;
+    map['title'] = title;
+    map['body'] = body;
+    return map;
+  }
+
+}
