@@ -8,7 +8,7 @@ class AddPostCubit extends Cubit<AddPostState> {
 
   final AddPostUseCase addPostUseCase;
 
-  getAllPosts(Post post ) async {
+  addPost(Post post ) async {
     emit(AddPostLoading());
     var response = await addPostUseCase(post);
 
