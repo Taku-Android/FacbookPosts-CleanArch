@@ -14,12 +14,13 @@ class Styles{
   static  TextStyle textDesc =  const TextStyle(
       fontSize: 18 ,
       fontWeight:  FontWeight.bold ,
-      color: Colors.grey
+      color: Colors.grey ,
+
   );
 
 
   static  TextStyle textId =  const TextStyle(
-      fontSize: 26 ,
+      fontSize: 22 ,
       fontWeight:  FontWeight.bold ,
       color: Colors.grey
   );
