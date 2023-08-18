@@ -20,7 +20,7 @@ class Styles{
 
 
   static  TextStyle textId =  const TextStyle(
-      fontSize: 22 ,
+      fontSize: 18 ,
       fontWeight:  FontWeight.bold ,
       color: Colors.grey
   );
