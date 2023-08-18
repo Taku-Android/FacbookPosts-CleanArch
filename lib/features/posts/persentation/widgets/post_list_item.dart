@@ -10,7 +10,7 @@ class PostListItem extends StatelessWidget {
     return Column(
       children: [
         Container(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(16),
 
           width: MediaQuery.of(context).size.width / .5,
           child: Row(
@@ -54,7 +54,7 @@ class PostListItem extends StatelessWidget {
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.0 ),
           child: Divider(
-            height: 2,
+            height: 6,
             color: Colors.black,
           ),
         )
