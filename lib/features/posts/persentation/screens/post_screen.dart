@@ -10,6 +10,17 @@ class PostScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Posts'),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(40)
+          ),
+          child: const Icon(Icons.add , color: Colors.white,),
+        ),
+      ),
       body: const PostListView()
     );
   }
