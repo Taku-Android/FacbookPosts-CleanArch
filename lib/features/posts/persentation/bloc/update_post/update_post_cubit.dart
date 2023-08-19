@@ -8,7 +8,7 @@ class UpdatePostCubit extends Cubit<UpdatePostState> {
 
   final UpdatePostUseCase updatePostUseCase;
 
-  deletePost(Post post ) async {
+  updatePost(Post post ) async {
     emit(UpdatePostLoading());
     var response = await updatePostUseCase(post);
 

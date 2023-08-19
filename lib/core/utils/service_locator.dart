@@ -10,7 +10,7 @@ import 'package:my_posts_clean_arch/features/posts/domain/usecases/add_post_usec
 import 'package:my_posts_clean_arch/features/posts/domain/usecases/delete_post_usecase.dart';
 import 'package:my_posts_clean_arch/features/posts/domain/usecases/get_all_posts_usecase.dart';
 import 'package:my_posts_clean_arch/features/posts/domain/usecases/update_post_usecase.dart';
-import 'package:my_posts_clean_arch/features/posts/persentation/bloc/add_post/add_post_cubit.dart';
+import 'package:my_posts_clean_arch/features/posts/persentation/bloc/add_update_post/add_update_post_cubit.dart';
 import 'package:my_posts_clean_arch/features/posts/persentation/bloc/delete_post/delete_post_cubit.dart';
 import 'package:my_posts_clean_arch/features/posts/persentation/bloc/get_all_posts_bloc/get_all_posts_cubit.dart';
 import 'package:my_posts_clean_arch/features/posts/persentation/bloc/update_post/update_post_cubit.dart';
@@ -28,8 +28,9 @@ Future<void> setupServiceLocator() async {
     getIt()
   ));
 
-  getIt.registerFactory(() => AddPostCubit(
-      getIt()
+  getIt.registerFactory(() => AddUpdatePostCubit(
+      getIt() ,
+    getIt()
   ));
 
   getIt.registerFactory(() => DeletePostCubit(
