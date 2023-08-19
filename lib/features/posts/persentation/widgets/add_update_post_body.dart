@@ -13,32 +13,60 @@ class AddUpdatePostBody extends StatefulWidget {
 }
 
 class _AddUpdatePostBodyState extends State<AddUpdatePostBody> {
+  final formKey = GlobalKey<FormState>();
   final TextEditingController titleController = TextEditingController();
-
   final TextEditingController bodyController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          CustomTextField(controller: titleController, hintText: 'Title'),
-          const SizedBox(
-            height: 30,
-          ),
-          CustomTextField(
-            controller: bodyController,
-            hintText: 'Body',
-            maxLines: 5,
-          ),
-          const SizedBox(
-            height: 50,
-          ),
-          CustomButton(onPressed: () {}, addPost: false),
-        ],
+      child: Form(
+        key: formKey,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CustomTextField(
+              controller: titleController,
+              hintText: 'Title',
+              validator: (value) {
+                if (value == null || value.trim().isEmpty) {
+                  return 'Title required';
+                }
+                return null; // Return null if validation passes
+              },
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            CustomTextField(
+              controller: bodyController,
+              hintText: 'Body',
+              maxLines: 5,
+              validator: (value) {
+                if (value == null || value.trim().isEmpty) {
+                  return 'Body required';
+                }
+                return null; // Return null if validation passes
+              },
+            ),
+            const SizedBox(
+              height: 50,
+            ),
+            CustomButton(
+                onPressed: () {
+                  addOrUpdatePost();
+                },
+                addPost: widget.post != null),
+          ],
+        ),
       ),
     );
+  }
+
+  addOrUpdatePost() {
+    if (formKey.currentState?.validate() == false) {
+      return;
+    }
   }
 }
