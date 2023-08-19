@@ -2,9 +2,11 @@ import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:my_posts_clean_arch/core/errors/failure.dart';
 import 'package:my_posts_clean_arch/features/posts/data/model/post_model.dart';
 
 import '../../../../core/utils/constants.dart';
+import 'package:http/http.dart' as http;
 
 abstract class PostRemoteDataSource {
   Future<List<PostModel>> getAllPosts();
@@ -18,19 +20,38 @@ abstract class PostRemoteDataSource {
 
 class PostRemoteDataSourceImpl extends PostRemoteDataSource {
   final Dio _dio;
+  final http.Client client;
 
-  PostRemoteDataSourceImpl(this._dio);
+  PostRemoteDataSourceImpl(this._dio, this.client);
 
   @override
   Future<List<PostModel>> getAllPosts() async {
-    _dio.options.headers["content-type"] = "application/json";
-    var response = await _dio.get('$kBaseUrl/posts');
+    final response = await client.get(
+      Uri.parse("$kBaseUrl/posts/"),
+      headers: {"Content-Type": "application/json"},
+    );
+    print(response.body);
 
-    final List decodedJson = json.decode(response.data) as List;
-    final List<PostModel> postModels = decodedJson
-        .map<PostModel>((jsonPostModel) => PostModel.fromJson(jsonPostModel))
-        .toList();
-    return postModels;
+    if (response.statusCode == 200) {
+      final List decodedJson = json.decode(response.body) as List;
+      final List<PostModel> postModels = decodedJson
+          .map<PostModel>((jsonPostModel) => PostModel.fromJson(jsonPostModel))
+          .toList();
+
+      return postModels;
+    } else {
+      throw ServerError('Not Good ');
+    }
+
+    // var response = await _dio.get('$kBaseUrl/posts/');
+    // print(response.data);
+    // final List decodedJson = json.decode(response.data) as List;
+    //   final List<PostModel> postModels = decodedJson
+    //       .map<PostModel>((jsonPostModel) => PostModel.fromJson(jsonPostModel))
+    //       .toList();
+    //
+    //   return postModels;
+
   }
 
   @override
