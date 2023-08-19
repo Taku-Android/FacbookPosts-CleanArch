@@ -13,7 +13,7 @@ class PostApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return  MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_) => getIt<GetAllPostsCubit>()),
+        BlocProvider(create: (_) => getIt<GetAllPostsCubit>()..getAllPosts()),
       ],
       child: MaterialApp(
         title: AppStrings.appName,
