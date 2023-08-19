@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-
+import '../../domain/entity/post.dart';
+import 'custom_button.dart';
 import 'custom_text_form_field.dart';
 
 class AddUpdatePostBody extends StatefulWidget {
-  const AddUpdatePostBody({super.key});
+  const AddUpdatePostBody({super.key, this.post});
+  
+  final Post? post ;
 
   @override
   State<AddUpdatePostBody> createState() => _AddUpdatePostBodyState();
@@ -30,8 +33,14 @@ class _AddUpdatePostBodyState extends State<AddUpdatePostBody> {
               hintText: 'Body' ,
               maxLines: 5,
           ),
+          const SizedBox(
+            height: 50,
+          ),
+          const CustomButton(addPost: false),
         ],
       ),
     );
   }
 }
+
+
