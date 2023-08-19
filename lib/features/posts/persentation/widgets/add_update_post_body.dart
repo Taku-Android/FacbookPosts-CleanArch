@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_posts_clean_arch/core/utils/loading.dart';
 import 'package:my_posts_clean_arch/features/posts/persentation/bloc/add_update_post/add_update_post_cubit.dart';
 import 'package:my_posts_clean_arch/features/posts/persentation/bloc/add_update_post/add_update_post_state.dart';
 import '../../domain/entity/post.dart';
@@ -25,10 +26,29 @@ class _AddUpdatePostBodyState extends State<AddUpdatePostBody> {
   Widget build(BuildContext context) {
     return BlocConsumer<AddUpdatePostCubit, AddUpdatePostState>(
       listener: (context, state) {
-        // TODO: implement listener
+        if(state is AddUpdatePostSuccess){
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Post added successfully'),
+              backgroundColor: Colors.green,
+              duration: Duration(seconds: 2), // Duration to display the snackbar
+            ),
+          );
+        }
+        if(state is AddUpdatePostFailure){
+          ScaffoldMessenger.of(context).showSnackBar(
+             SnackBar(
+              content: Text(state.errMessage),
+              backgroundColor: Colors.red,
+              duration: const Duration(seconds: 2), // Duration to display the snackbar
+            ),
+          );
+        }
       },
       builder: (context, state) {
-        return Padding(
+        if(state is AddUpdatePostLoading){
+           return const LoadingWidget();
+        }else{return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Form(
             key: formKey,
@@ -74,7 +94,8 @@ class _AddUpdatePostBodyState extends State<AddUpdatePostBody> {
               ],
             ),
           ),
-        );
+        );}
+
       },
     );
   }
