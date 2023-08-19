@@ -16,6 +16,7 @@ class PostApp extends StatelessWidget {
         BlocProvider(create: (_) => getIt<GetAllPostsCubit>()..getAllPosts()),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: AppStrings.appName,
         theme: appTheme,
         home: const SafeArea(child: PostScreen()),
