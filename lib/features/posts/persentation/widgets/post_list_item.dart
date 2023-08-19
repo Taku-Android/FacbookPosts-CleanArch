@@ -13,9 +13,9 @@ class PostListItem extends StatelessWidget {
     return  Column(
       children: [
         ListTile(
-          leading: Text('${post.id + 1 }' , style: Styles.textId,),
+          leading: Text('${post.id}' , style: Styles.textId,),
           title: Text(post.title,style: Styles.textTitle,),
-          subtitle:Text(post.body,style: Styles.textDesc,) ,
+          subtitle:Text(post.body,style: Styles.textDesc,),
 
         ),
         const Divider(height: 2,)
