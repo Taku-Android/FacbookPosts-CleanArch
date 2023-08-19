@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 import '../../../../core/utils/styles.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key, required this.addPost});
+  const CustomButton({super.key, required this.addPost, required this.onPressed});
 
   final bool addPost;
+  final  void Function() onPressed ;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-        onPressed: () {},
+        onPressed: onPressed ,
         child: SizedBox(
           width: 100,
           child: Row(

@@ -5,8 +5,8 @@ import 'custom_text_form_field.dart';
 
 class AddUpdatePostBody extends StatefulWidget {
   const AddUpdatePostBody({super.key, this.post});
-  
-  final Post? post ;
+
+  final Post? post;
 
   @override
   State<AddUpdatePostBody> createState() => _AddUpdatePostBodyState();
@@ -29,18 +29,16 @@ class _AddUpdatePostBodyState extends State<AddUpdatePostBody> {
             height: 30,
           ),
           CustomTextField(
-              controller: bodyController,
-              hintText: 'Body' ,
-              maxLines: 5,
+            controller: bodyController,
+            hintText: 'Body',
+            maxLines: 5,
           ),
           const SizedBox(
             height: 50,
           ),
-          const CustomButton(addPost: false),
+          CustomButton(onPressed: () {}, addPost: false),
         ],
       ),
     );
   }
 }
-
-
