@@ -15,6 +15,7 @@ import 'package:my_posts_clean_arch/features/posts/persentation/bloc/delete_post
 import 'package:my_posts_clean_arch/features/posts/persentation/bloc/get_all_posts_bloc/get_all_posts_cubit.dart';
 import 'package:my_posts_clean_arch/features/posts/persentation/bloc/update_post/update_post_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
 
 final getIt = GetIt.instance;
@@ -87,6 +88,7 @@ Future<void> setupServiceLocator() async {
 
   getIt.registerLazySingleton<PostRemoteDataSource>(() =>
       PostRemoteDataSourceImpl(
+          getIt() ,
           getIt()
       )
   );
@@ -107,6 +109,7 @@ Future<void> setupServiceLocator() async {
   getIt.registerLazySingleton(() => sharedPreferences);
 
   getIt.registerLazySingleton(() => Dio());
+  getIt.registerLazySingleton(() => http.Client());
   getIt.registerLazySingleton(() => InternetConnectionChecker());
 
 
