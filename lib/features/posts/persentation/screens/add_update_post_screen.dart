@@ -30,7 +30,7 @@ class AddUpdatePostScreen extends StatelessWidget {
             getIt(),
           ),
         ),
-      ], child: const AddUpdatePostBody()),
+      ], child:  AddUpdatePostBody(post: post,)),
     );
   }
 }

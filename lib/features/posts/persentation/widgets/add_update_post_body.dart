@@ -22,16 +22,21 @@ class _AddUpdatePostBodyState extends State<AddUpdatePostBody> {
   final TextEditingController bodyController = TextEditingController();
 
 
+
   @override
   Widget build(BuildContext context) {
+    if(widget.post != null){
+      titleController.text = widget.post!.title ;
+      bodyController.text = widget.post!.body ;
+    }
     return BlocConsumer<AddUpdatePostCubit, AddUpdatePostState>(
       listener: (context, state) {
         if(state is AddUpdatePostSuccess){
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Post added successfully'),
+             SnackBar(
+              content: Text((widget.post == null)?'Post added successfully':'Post Updated successfully'),
               backgroundColor: Colors.green,
-              duration: Duration(seconds: 2), // Duration to display the snackbar
+              duration: const Duration(seconds: 2), // Duration to display the snackbar
             ),
           );
         }
@@ -108,8 +113,8 @@ class _AddUpdatePostBodyState extends State<AddUpdatePostBody> {
       Post post = Post(title: titleController.text, body: bodyController.text);
       BlocProvider.of<AddUpdatePostCubit>(context).addPost(post);
     } else {
-      // Post post = Post(title: titleController.text, body: bodyController.text);
-      // BlocProvider.of<AddPostCubit>(context).addPost(post);
+      Post post = Post(title: titleController.text, body: bodyController.text);
+      BlocProvider.of<AddUpdatePostCubit>(context).updatePost(post);
     }
   }
 }
